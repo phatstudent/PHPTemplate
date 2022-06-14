@@ -32,7 +32,7 @@ class Database{
         }
     }
 
-    private function write($querry, $data = []){
+    public function write($querry, $data = []){
         $DB = $this->db_connect();
         $stm = $DB->prepare($querry);
 

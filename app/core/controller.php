@@ -10,8 +10,8 @@ class Controller{
     }
 
     function loadModel($model){
-        if(file_exists("../app/views/". $model .".php")){
-            include "../app/views/". $model .".php";
+        if(file_exists("../app/models/". $model .".php")){
+            include "../app/models/". $model .".php";
             return $model = new $model();
         }
         return false;
