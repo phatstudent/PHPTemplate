@@ -104,6 +104,7 @@ body {
 <?php $this->view("minima/header", $data) ?>
 
 <div class="login-page"><h2>Sign Up</h2>
+<?php check_messenger()?>
   <div class="form">
     <form class="register-form" method="post">
       <input type="text" name="username" placeholder="name"/>
@@ -112,7 +113,7 @@ body {
       <button>create</button>
       <p class="message">Already registered? <a href="#">Sign In</a></p>
     </form>
-    <form class="login-form">
+    <form class="login-form" method="post">
       <input type="text" name="username" placeholder="username"/>
       <input type="password" name="password" placeholder="password"/>
       <button>login</button>
@@ -122,9 +123,10 @@ body {
 </div>
 
 <script>
-$('.message a').click(function(){
-   $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
-});
+  $('.message a').click(function(){
+    $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
+  });
+  $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
 </script>
 
 <?php $this->view("minima/footer", $data) ?>

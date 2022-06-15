@@ -5,15 +5,18 @@ class User{
 
         $DB = new Database();
 
+
         $_SESSION['error'] ="";
         if(isset($POST['username']) && isset($POST['password'])){
             $arr['username'] = $POST['username'];
             $arr['password'] = $POST['password'];
             $querry = "select * from users where username = :username && password = :password limit 1";
+
             $data = $DB->read($querry, $arr);
+            
             if(is_array($data)){
                 //logged in
-                $_SESSION['user_id'] = $data[0]->userid;
+                $_SESSION['user_id'] = $data[0]->id;
                 $_SESSION['user_name'] = $data[0]->username;
                 $_SESSION['user_url'] = $data[0]->url_address;
             }else{
@@ -34,10 +37,14 @@ class User{
             $arr['username'] = $POST['username'];
             $arr['password'] = $POST['password'];
             $arr['email'] = $POST['email'];
+            $arr['url_address'] = get_random_string_max(50);
+            $arr['date'] = date("Y-m-d H:i:s");
 
-            $querry = "insert into users (username,password,email) values (:username,:password,:email))";
+            $querry = "insert into users (username,password,email,url_address,date) values (:username,:password,:email,:url_address,:date)";
+
             $data = $DB->write($querry, $arr);
-            if(is_array($data)){
+            echo $data;
+            if($data){
                 header("Location:". ROOT . "login");
                 die;
             }
@@ -55,11 +62,11 @@ class User{
 
             $arr['user_url'] = $_SESSION['user_url'];
 
-            $querry = "selectt * from users where url_address = :user_url limit 1";
+            $querry = "select * from users where url_address = :user_url limit 1";
             $data = $DB->read($querry, $arr);
             if(is_array($data)){
                 //logged in
-                $_SESSION['user_id'] = $data[0]->userid;
+                $_SESSION['user_id'] = $data[0]->id;
                 $_SESSION['user_name'] = $data[0]->username;
                 $_SESSION['user_url'] = $data[0]->url_address;
 
@@ -69,6 +76,14 @@ class User{
 
         return false;
 
+    }
+
+    function logout(){
+
+        unset($_SESSION['user_name']);
+        unset($_SESSION['user_url']);
+
+        header("Location:". ROOT ."login");
     }
 
 }

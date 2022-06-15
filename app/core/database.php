@@ -26,7 +26,14 @@ class Database{
         }
 
         if($check){
-            return $stm->fetchAll(PDO::FETCH_OBJ);
+            $data =  $stm->fetchAll(PDO::FETCH_OBJ);
+
+            if(is_array($data) && count($data) > 0){
+                return $data;
+            }
+
+            return false;
+
         }else{
             return false;
         }

@@ -5,11 +5,11 @@
     <div class="s-12 m-12 l-4 center">
         <h4 class="text-size-20 margin-bottom-20 text-dark text-center">Up Load</h4>
         <form name="contactForm" class="customform" method="post">
-            <div class="s-12"> 
+            <div class="s-12">
                 <input name="title" class="subject" placeholder="Title" title="title" type="text" required>
                 <p class="subject-error form-error">Please enter the title.</p>
             </div>
-            <div class="s-12"> 
+            <div class="s-12">
                 <input name="file" class="subject" type="file" required>
                 <p class="subject-error form-error">Please enter a file.</p>
             </div>
@@ -19,7 +19,7 @@
             </div>
             <div class="s-12"><button class="s-12 submit-form button background-primary text-white" type="submit">Submit Button</button></div>
         </form>
-    </div>           
+    </div>
 </section> 
 
 
